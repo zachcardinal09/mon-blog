@@ -1,0 +1,85 @@
+Information technique sur : www.php.net
+
+  1- Possible de créer du code php uniquement ou au travers de HTML (voir exemple un peu plus loin en refaisssant )
+
+ 2- Ouverture de balise php
+    <?php ... ?> --> ne pas utiliser si fermeture du fichier
+
+ 3- Commentaires
+    // ou #
+    /* */
+
+ 4- Constante
+    const SEARCH_LETTER = 'A';
+    Utilisation (sans $ ou guillemet)
+    Par standard le nom des constantes est en MAJUSCULE
+    "const" est compilé et ne peut être que scalaire ou array de scalaire
+    "const" doit être défini au niveau global, ne peut être défini dans une portée locale comme un while
+
+ 5- variable
+    déclaration d'une variable ($)
+    Standard de nom des variable : camelcase --> voiciUnExemple
+    type de données (integer, float, bool, string)
+
+ 6- var_dump() --> + d'informations
+    print_r()  --> - d'information; + facile à lire
+    Afficher le contenu de la variable "$students" avec les 2 fonctions (ajouter echo "<br>"; (saut de ligne) et echo "<pre>" (formater))
+
+ 7- Utilisation des guillement (") ou des apostrophes (')
+    Différence dans le echo pour afficher valeur d'une variable
+
+ 8- Lecture complet d'un fichier texte
+    Plusieurs façon différente de lire un fichier (y revenir plus tard)
+    Retourne dans un tableau (on va y revenir plus en détail plus tard ?)
+    - if (file_exists(''))... --> s'assurer que le fichier existe
+
+ 9- echo : afficher/retourne quelques chose
+    <?= --> balise echo : pour echo uniquement ?>
+
+10- Comparaison (== vs ===)
+    = est une affectation
+
+11- Incrémentation vs décrémentation ($a++, --$a)
+
+12- Boucle
+    - foreach pour looper dans un tableau
+    - for ($i = 0; $i < count($students); $i++) {}
+    - do { $student_count--;} while ($students_count > 0);
+    - $compteur = 0; while ($compteur < count($students)) {$compteur++;}
+    - break (sort de la boucle) et continue (arrête l'itération mais continue la boucle)
+
+13- Fonction 
+    - On va y revenir plus en détail
+    - stripos() : trouver la position de la 1er occurence d'un mot dans une string
+    - pour les tableaux --> in_array() : indique si une valeur appartient à un tableau
+
+14- Possibilité de mixer du PHP dans du html
+    Exemple : Refaire affichage de la liste des étudiants :
+        ?>
+
+        <h1>Liste des étudiants</h1>
+        <ul>
+        <?php foreach ($students as $student) {?>
+        <li><?=htmlspecialchars($student)?></li>
+        <?php }?>
+        </ul>
+
+        <?php
+
+15- HEREDOC - html
+    Exemple : Refaire affichage de la liste des étudiants :
+        $studentList = "";
+        foreach($students as $student)
+        {
+            $studentList .= "<li>" . htmlspecialchars($student) . "</li>";
+        }
+
+        $listResult = <<< HTML  #--> Pour que VS Code format le code html
+            <h1>Liste des étudiants</h1>
+            <ul> $studentList </ul>
+        HTML;
+        echo $listResult;
+
+16- Alternative (IF) : identique à C# et Javascript
+    echo $found ? "<p>L'étudiant(e) " . $search_name . "a été trouvé(e) dans la liste.</p>" : "<p>L'étudiant(e) " . $search_name . " n'est pas dans la liste.</p>";
+
